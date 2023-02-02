@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroCaracteristicasComponent } from './hero-caracteristicas/hero-caracteristicas.component';
+import { MensajesHeroComponent } from './mensajes-hero/mensajes-hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroCaracteristicasComponent
+    HeroCaracteristicasComponent,
+    MensajesHeroComponent
   ],
   imports: [
     BrowserModule,
