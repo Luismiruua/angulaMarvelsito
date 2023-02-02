@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MensajeHeroService } from '../service/mensaje-hero.service';
 
 @Component({
   selector: 'app-mensajes-hero',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./mensajes-hero.component.scss']
 })
 export class MensajesHeroComponent {
+  constructor(public mensajeHeroService: MensajeHeroService) {}
 
 }

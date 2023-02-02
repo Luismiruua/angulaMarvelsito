@@ -1,1 +1,8 @@
-<p>mensajes-hero works!</p>
+<div *ngIf="mensajeHeroService.mensajes.length">
+
+  <h2>Messages</h2>
+  <button class="clear"
+          (click)="mensajeHeroService.clear()">clear</button>
+  <div *ngFor='let message of mensajeHeroService.mensajes'> {{message}} </div>
+
+</div>
