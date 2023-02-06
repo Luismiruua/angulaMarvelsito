@@ -5,12 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroCaracteristicasComponent } from './hero-caracteristicas/hero-caracteristicas.component';
 import { MensajesHeroComponent } from './mensajes-hero/mensajes-hero.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,16 +24,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeroesComponent,
     HeroCaracteristicasComponent,
     MensajesHeroComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../service/hero.service';
-
+import { Observable } from 'rxjs';
+import { Result } from '../interfaces/marvelHero';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.scss' ]
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+
+
+  heroes:Result[] = [];
+
+  allHeroes?: Observable<any>;
+
 
   constructor(private heroService: HeroService) { }
 
@@ -18,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    .subscribe(heroes => this.heroes = heroes.data.results) ;
   }
+
 }

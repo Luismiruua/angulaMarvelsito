@@ -1,12 +1,19 @@
 <h3>Los mejores héroes</h3>
-  <div class="grid grid-pad">
-    <div class="heroes-menu">
-      <a *ngFor="let hero of heroes" class="col-1-4"
-        routerLink="/detalle/{{hero.id}}">
-        <div class="module hero">
-            <h4>{{hero.name}}</h4>
-        </div>
-      </a>
-    </div>
+<div fxFlex fxLayout="column">
+  <div fxLayout="row wrap">
+      <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column"
+          *ngFor="let hero of heroes">
+          <mat-card>
+              <img mat-card-image src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
+              <mat-card-title>
+                {{hero.name}}
+              </mat-card-title>
+          </mat-card>
+      </div>
 
   </div>
+</div>
+
+
+  <app-hero-search></app-hero-search>
+
