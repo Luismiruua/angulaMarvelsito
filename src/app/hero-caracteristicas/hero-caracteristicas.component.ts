@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../service/hero.service';
+import { Result } from '../interfaces/marvelHero';
+
 
 @Component({
   selector: 'app-hero-caracteristicas',
@@ -19,7 +21,7 @@ export class HeroCaracteristicasComponent implements OnInit{
     private location: Location) { }
 
   @Input()
-  hero!: Hero;
+  hero?: Result;
 
   ngOnInit(): void {
     this.getHero();
@@ -28,7 +30,7 @@ export class HeroCaracteristicasComponent implements OnInit{
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero =>this.hero = hero.data.results[0]);
   }
 
   goBack(): void {

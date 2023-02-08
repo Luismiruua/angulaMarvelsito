@@ -7,17 +7,14 @@
 
 </div>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <li *ngFor="let hero of heroes | paginate: {itemsPerPage:20, currentPage: page}">
     <a routerLink="/detalle/{{hero.id}}">
       <span class="badge">{{hero.id}}</span>
       {{hero.name}}
     </a>
   </li>
 </ul>
-
-<!--<button class="delete" title="delete hero"
-      (click)="delete(hero)">X</button>-->
-
+<pagination-controls (pageChange)="page = $event"></pagination-controls>
 
 <app-hero-caracteristicas></app-hero-caracteristicas>
 

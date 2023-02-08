@@ -2,9 +2,11 @@
 <div *ngIf="hero">
 
   <h2>Las características de {{hero.name | uppercase}} :</h2>
-  <div><span>id: </span>{{hero.id}}</div>
-  <div>
+  <div><span>id: </span>{{hero.description}}</div>
 
+
+  <div>
+    <img mat-card-image src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
   </div>
   <button type="button" (click)="goBack()">go back</button>
 

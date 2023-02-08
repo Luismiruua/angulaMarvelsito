@@ -9,12 +9,7 @@ import { Result } from '../interfaces/marvelHero';
   styleUrls: [ './dashboard.component.scss' ]
 })
 export class DashboardComponent implements OnInit {
-
-
   heroes:Result[] = [];
-
-  allHeroes?: Observable<any>;
-
 
   constructor(private heroService: HeroService) { }
 
@@ -23,8 +18,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes.data.results) ;
+    this.heroService.getAleatHeroes()
+    .subscribe(heroes => this.heroes = heroes) ;
   }
 
 }

@@ -1,13 +1,18 @@
 <h3>Los mejores héroes</h3>
+<app-hero-search></app-hero-search>
+
 <div fxFlex fxLayout="column">
   <div fxLayout="row wrap">
       <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column"
           *ngFor="let hero of heroes">
           <mat-card>
-              <img mat-card-image src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
+            <img mat-card-image src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
+            <a routerLink="/detalle/{{hero.id}}">
+
               <mat-card-title>
                 {{hero.name}}
               </mat-card-title>
+            </a>
           </mat-card>
       </div>
 
@@ -15,5 +20,4 @@
 </div>
 
 
-  <app-hero-search></app-hero-search>
 

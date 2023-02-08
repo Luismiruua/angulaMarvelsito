@@ -8,6 +8,7 @@ import { InMemoryDataService } from './service/in-memory-data.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -36,6 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

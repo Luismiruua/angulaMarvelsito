@@ -1,11 +1,80 @@
 export interface Marvel {
-  code:            number;
-  status:          string;
-  copyright:       string;
-  attributionText: string;
-  attributionHTML: string;
-  etag:            string;
-  data:            Data;
+  code: 'int',
+  status: string,
+  copyright: string,
+  attributionText: string,
+  attributionHTML: string,
+  data: {
+    offset: 'int',
+    limit: 'int',
+    total: 'int',
+    count: 'int',
+    results: [
+      {
+        id: 'int',
+        name: string,
+        description: string,
+        modified: Date,
+        resourceURI: string,
+        urls: [
+          {
+            type: string,
+            url: string
+          }
+        ],
+        thumbnail: {
+          path: string,
+          extension: string
+        },
+        comics: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        },
+        stories: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string,
+              type: string
+            }
+          ]
+        },
+        events: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        },
+        series: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        }
+      }
+    ]
+  },
+  etag: string
 }
 
 export interface Data {
@@ -17,17 +86,66 @@ export interface Data {
 }
 
 export interface Result {
-  id:          number;
-  name:        string;
-  description: string;
-  modified:    string;
-  thumbnail:   Thumbnail;
-  resourceURI: string;
-  comics:      Comics;
-  series:      Comics;
-  stories:     Stories;
-  events:      Comics;
-  urls:        URL[];
+  id: 'int',
+        name: string,
+        description: string,
+        modified: Date,
+        resourceURI: string,
+        urls: [
+          {
+            type: string,
+            url: string
+          }
+        ],
+        thumbnail: {
+          path: string,
+          extension: string
+        },
+        comics: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        },
+        stories: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string,
+              type: string
+            }
+          ]
+        },
+        events: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        },
+        series: {
+          available: 'int',
+          returned: 'int',
+          collectionURI: string,
+          items: [
+            {
+              resourceURI: string,
+              name: string
+            }
+          ]
+        }
 }
 
 export interface Comics {

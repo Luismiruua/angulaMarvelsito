@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../interfaces/hero';
-import { Marvel, Result } from '../interfaces/marvelHero';
+import { Result } from '../interfaces/marvelHero';
 import { HeroService } from '../service/hero.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -11,15 +9,18 @@ import { Observable } from 'rxjs';
 })
 export class HeroesComponent implements OnInit{
 
-  heroes: Result[] = [];
-
-  characterSvc: any;
-
+  public heroes: Result[] = [];
+  public page?: number;
+  public p: number = 1;
+  public total:number=0;
   constructor(private heroService: HeroService){}
 
   ngOnInit(): void {
     this.getHeroes();
+    this.getHeroesPage();
     //this.getCharacters();
+    this.heroService.getHeroes().subscribe(
+      heroes => this.heroes = heroes.data.results);
   }
 
 
@@ -29,6 +30,19 @@ export class HeroesComponent implements OnInit{
     .subscribe(heroes => this.heroes = heroes.data.results);
   }
 
+
+  getHeroesPage():void{
+      this.heroService.getHeroPage(this.p)
+      .subscribe((response:any)=>{
+        this.heroes = response.data;
+        this.total = response.total
+      })
+  }
+
+  pageChangeEvent(event:number){
+    this.p = event;
+    this.getHeroesPage();
+  }
 
   /*
   delete(hero: Hero): void {
