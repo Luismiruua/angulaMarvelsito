@@ -1,17 +1,19 @@
-export interface Marvel {
-  code: 'int',
+export interface SuperHeroes
+
+ {
+  code: number,
   status: string,
   copyright: string,
   attributionText: string,
   attributionHTML: string,
   data: {
-    offset: 'int',
-    limit: 'int',
-    total: 'int',
-    count: 'int',
+    offset: number,
+    limit: number,
+    total: number,
+    count: number,
     results: [
       {
-        id: 'int',
+        id: number,
         name: string,
         description: string,
         modified: Date,
@@ -27,8 +29,8 @@ export interface Marvel {
           extension: string
         },
         comics: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -38,8 +40,8 @@ export interface Marvel {
           ]
         },
         stories: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -50,8 +52,8 @@ export interface Marvel {
           ]
         },
         events: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -61,8 +63,8 @@ export interface Marvel {
           ]
         },
         series: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -86,7 +88,7 @@ export interface Data {
 }
 
 export interface Result {
-  id: 'int',
+  id: number,
         name: string,
         description: string,
         modified: Date,
@@ -102,8 +104,8 @@ export interface Result {
           extension: string
         },
         comics: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -113,8 +115,8 @@ export interface Result {
           ]
         },
         stories: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -125,8 +127,8 @@ export interface Result {
           ]
         },
         events: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {
@@ -136,8 +138,8 @@ export interface Result {
           ]
         },
         series: {
-          available: 'int',
-          returned: 'int',
+          available: number,
+          returned: number,
           collectionURI: string,
           items: [
             {

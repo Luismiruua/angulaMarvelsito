@@ -1,21 +1,18 @@
 <h2>My Heroes</h2>
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
-  <!-- (click) passes input value to add() and then clears the input -->
 
-</div>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes | paginate: {itemsPerPage:20, currentPage: page}">
+  <li *ngFor="let hero of heroes ">
     <a routerLink="/detalle/{{hero.id}}">
       <span class="badge">{{hero.id}}</span>
       {{hero.name}}
     </a>
   </li>
 </ul>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<p>{{offset +1}}</p>
+<p> - </p>
+<p>{{offset + limit +1}}</p>
+<p>{{total +1}}</p>
 
-<app-hero-caracteristicas></app-hero-caracteristicas>
-
+<button [disabled]="offset === 0" (click)="prevPagina()">Anterior</button>
+<button [disabled]="offset >= total" (click)="siguientePagina()">Siguiente</button>
 

@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from '../interfaces/hero';
 import { MensajeHeroService } from './mensaje-hero.service';
-import { Marvel, Result } from '../interfaces/marvelHero';
+import { SuperHeroes, Result } from '../interfaces/marvelHero';
 
 
 @Injectable({
@@ -17,6 +17,7 @@ export class HeroService {
     throw new Error('Method not implemented.');
   }
 
+  private total: number = 0;
   private heroesUrl = 'api/heroes';
   PUBLIC_KEY = '9c3fd62088363fb478ae5a2d211d7c27';
   HASH = ' 7b2b5bf608858c9af80820aa02691928';
@@ -30,10 +31,10 @@ export class HeroService {
 
 
 
-  getHeroes(): Observable<Marvel> {
-    return this.http.get<Marvel>(this.URL_API + this.apu)
+  getHeroes(): Observable<SuperHeroes> {
+    return this.http.get<SuperHeroes>(this.URL_API + this.apu)
     .pipe(
-      map((heroes: Marvel) => heroes),
+      map((heroes: SuperHeroes) => heroes),
     );
   }
 
@@ -63,46 +64,17 @@ export class HeroService {
   }
 
 
-  getHero(id: number): Observable<Marvel> {
+  getHero(id: number): Observable<SuperHeroes> {
     const url = `${this.URL_API}/${id}${this.apu}`;
-    return this.http.get<Marvel>(url).pipe(
+    return this.http.get<SuperHeroes>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Marvel>(`getHero id=${this.apu}`))
+      catchError(this.handleError<SuperHeroes>(`getHero id=${this.apu}`))
     );
   }
-
-  getHeroPage(page:number){
-    return this.http.get(this.URL_API + '?page=' +page);
-  }
-
   private log(mensaje: string) {
     this.mensajeHeroService.add(`HeroService: ${mensaje}`);
   }
 
-/*
-  updateHero(hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap(ad => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
-    );
-  }*/
-
-  addHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Hero>('addHero'))
-    );
-  }
-/*
-  deleteHero(hero: Hero | number): Observable<Hero> {
-    const id = typeof hero === 'number' ? hero : hero.id;
-    const url = `${this.heroesUrl}/${id}`;
-
-    return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Hero>('deleteHero'))
-    );
-  }*/
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
     return this.http.get<Hero[]>(url)
@@ -116,23 +88,24 @@ export class HeroService {
       );
   }
 
-  /*searchHeroes(term: string): Observable<Hero[]> {
+  getHeroPage(page:number){
+    return this.http.get(this.URL_API + '?page=' +page);
+  }
+
+
+  onSearchHeroes(term: string): Observable<Result[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
-      return of([]);
+      return of();
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found heroes matching "${term}"`) :
-         this.log(`no heroes matching "${term}"`)),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
-  }*/
-  searchHeroes(query = '') {
-    const filter = `${this.URL_API}/?name=${query}`;
+    return this.http.get<SuperHeroes>(`${this.URL_API}${this.apu}&nameStartsWith=${term}&limit=7`).pipe(
+      map((data:SuperHeroes)=> {
+        console.log(data.data.results)
+        return data.data.results})
 
-      return this.http.get<Result[]>(filter);
+    );
   }
+
   getDetails(id:number){
     return this.http.get<Result[]>(`${this.URL_API}/${id}`);
   }
@@ -140,10 +113,25 @@ export class HeroService {
   getAleatHeroes(): Observable<Result[]> {
     const num = Math.random() * 1542;
     const random = `https://gateway.marvel.com/v1/public/characters?offset=${num}&ts=luis&apikey=9c3fd62088363fb478ae5a2d211d7c27&hash=de7bd022cb41a267f79395503757f103`;
-
-    return this.http.get<Marvel>(random).pipe(
-      map((heroes: Marvel) => heroes.data.results)
+    return this.http.get<SuperHeroes>(random).pipe(
+      map((heroes: SuperHeroes) => heroes.data.results)
     )
 
   }
+  getAll(limit: number, offset: number): Observable<any> {
+    let url = this.URL_API + this.apu;
+    url += `&limit=${limit}&offset=${offset}`
+    return this.http.get<SuperHeroes>(url)
+    .pipe(
+      map((heroes: SuperHeroes) => {
+        this.total = heroes.data.total
+        return heroes.data
+      })
+    );
+  }
+
+  getTotal(): number {
+    return this.total;
+  }
+
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Result } from '../interfaces/marvelHero';
 import { HeroService } from '../service/hero.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-heroes',
@@ -10,43 +11,36 @@ import { HeroService } from '../service/hero.service';
 export class HeroesComponent implements OnInit{
 
   public heroes: Result[] = [];
-  public page?: number;
-  public p: number = 1;
-  public total:number=0;
+
+  public total: number = 0;
+  public limit: number = 20;
+  public offset: number = 0;
   constructor(private heroService: HeroService){}
 
   ngOnInit(): void {
-    this.getHeroes();
-    this.getHeroesPage();
-    //this.getCharacters();
-    this.heroService.getHeroes().subscribe(
-      heroes => this.heroes = heroes.data.results);
+    this.getHeroesp();
   }
 
 
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes.data.results);
+  getHeroesp(): void {
+
+    this.heroService.getAll(this.limit, this.offset)
+    .subscribe(heroes => {
+      this.total = this.heroService.getTotal()
+      this.heroes = heroes.results
+    });
+  }
+
+  public siguientePagina() {
+    this.offset = this.offset + this.limit;
+    this.getHeroesp()
+  }
+
+  public prevPagina() {
+    this.offset = this.offset - this.limit;
+    this.getHeroesp()
   }
 
 
-  getHeroesPage():void{
-      this.heroService.getHeroPage(this.p)
-      .subscribe((response:any)=>{
-        this.heroes = response.data;
-        this.total = response.total
-      })
-  }
-
-  pageChangeEvent(event:number){
-    this.p = event;
-    this.getHeroesPage();
-  }
-
-  /*
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
-  }*/
 }
