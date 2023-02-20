@@ -6,7 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from '../interfaces/hero';
 import { MensajeHeroService } from './mensaje-hero.service';
-import { SuperHeroes, Result } from '../interfaces/marvelHero';
+import { SuperHeroes, Result, Data } from '../interfaces/marvelHero';
 
 
 @Injectable({
@@ -118,19 +118,20 @@ export class HeroService {
     )
 
   }
-  getAll(limit: number, offset: number): Observable<any> {
+
+  getAll(limit: number, offset: number): Observable<Data> {
     let url = this.URL_API + this.apu;
     url += `&limit=${limit}&offset=${offset}`
     return this.http.get<SuperHeroes>(url)
     .pipe(
-      map((heroes: SuperHeroes) => {
-        this.total = heroes.data.total
-        return heroes.data
+      map((dataHeroes: SuperHeroes) => {
+        this.total = dataHeroes.data.total
+        return dataHeroes.data
       })
     );
   }
 
-  getTotal(): number {
+  getTodosLosHeroes(): number {
     return this.total;
   }
 

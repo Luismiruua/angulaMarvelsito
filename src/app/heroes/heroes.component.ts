@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Result } from '../interfaces/marvelHero';
 import { HeroService } from '../service/hero.service';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,6 +15,9 @@ export class HeroesComponent implements OnInit{
   public total: number = 0;
   public limit: number = 20;
   public offset: number = 0;
+  public p: number = 0;
+  public u:number = 1560;
+
   constructor(private heroService: HeroService){}
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class HeroesComponent implements OnInit{
 
     this.heroService.getAll(this.limit, this.offset)
     .subscribe(heroes => {
-      this.total = this.heroService.getTotal()
+      this.total = this.heroService.getTodosLosHeroes()
       this.heroes = heroes.results
     });
   }
@@ -41,6 +44,19 @@ export class HeroesComponent implements OnInit{
     this.offset = this.offset - this.limit;
     this.getHeroesp()
   }
+
+  public primeraPag(){
+    this.offset = this.p;
+    this.getHeroesp()
+
+  }
+  public ultimaPag() {
+    this.offset = this.u;
+    this.getHeroesp()
+
+  }
+
+
 
 
 }

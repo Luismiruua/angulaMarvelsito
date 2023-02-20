@@ -1,10 +1,23 @@
 
-<h1 class=" text-9xl font-bold underline">{{title}}</h1>
+<div class="bg-red-400">
 
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-  <a routerLink="/dashboard" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">Dashboard</a>
-  <a routerLink="/heroes"  class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">Heroes</a>
-  <app-hero-search></app-hero-search>
-</nav>
+  <h1 class="text-center relative">
+    <p class="text-6xl font-bold text-blue-800">{{title}}</p>
+  </h1>
+
+  <div class="inline-flex left-0">
+    <nav class="inline-flex m-3">
+      <a routerLink="/dashboard"  class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-base px-10 py-5 text-center mr-8 mb-4">Dashboard</a>
+      <a routerLink="/heroes"  class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-base px-10 py-5 text-center mr-8 mb-4">Heroes</a>
+    </nav>
+    <div class="absolute right-0 top w-full flex">
+      <app-hero-search></app-hero-search>
+    </div>
+
+  </div>
+
+
+</div>
+
 <router-outlet></router-outlet>
 <app-mensajes-hero></app-mensajes-hero>

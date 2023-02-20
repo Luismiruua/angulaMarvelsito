@@ -1,18 +1,45 @@
-<h2>My Heroes</h2>
+<div class="">
+  <h2>My Heroes</h2>
 
-<ul class="heroes">
-  <li *ngFor="let hero of heroes ">
-    <a routerLink="/detalle/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span>
-      {{hero.name}}
-    </a>
-  </li>
-</ul>
-<p>{{offset +1}}</p>
-<p> - </p>
-<p>{{offset + limit +1}}</p>
-<p>{{total +1}}</p>
+  <div class="absolute w-48">
+    <div class="relative">
+      <ul class="w-28 ">
+        <li *ngFor="let hero of heroes">
+          <a routerLink="/detalle/{{hero.id}}">
+            <div class="my-6 w-full inline-flex">
+                <span class="badge bg-blue-400 p-3 rounded">{{hero.id}}</span>
+                <div class="inline-flex">
+                  {{hero.name}}
+                </div>
+            </div>
 
-<button [disabled]="offset === 0" (click)="prevPagina()">Anterior</button>
-<button [disabled]="offset >= total" (click)="siguientePagina()">Siguiente</button>
+          </a>
+        </li>
+      </ul>
+      <div>
+        <p>{{offset +1}} - {{offset + limit +1}} </p>
+      </div>
+    </div>
+    <div class="relative text-center inline-flex">
+      <button [disabled]="offset === 0" class="relative focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+          (click)="primeraPag()">
+        &lt;&lt;&lt;
+      </button>
+      <button [disabled]="offset === 0" class="relative focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+            (click)="prevPagina()">Anterior
+          </button>
+      <button [disabled]="offset >= total - 2" class="relative focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+            (click)="siguientePagina()">Siguiente
+          </button>
+      <button [disabled]="offset >= total - 2" class="relative focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+        (click)="ultimaPag()">
+          >>>
+      </button>
 
+
+    </div>
+  </div>
+
+
+
+</div>
