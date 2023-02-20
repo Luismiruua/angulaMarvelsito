@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 
 import { Hero } from '../interfaces/hero';
 import { MensajeHeroService } from './mensaje-hero.service';
@@ -106,9 +106,6 @@ export class HeroService {
     );
   }
 
-  getDetails(id:number){
-    return this.http.get<Result[]>(`${this.URL_API}/${id}`);
-  }
 
   getAleatHeroes(): Observable<Result[]> {
     const num = Math.random() * 1542;

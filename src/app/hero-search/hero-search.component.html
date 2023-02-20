@@ -1,9 +1,13 @@
 <div id="search-component" class="absolute right-0">
+  <div class="relative">
+    <input #inputSearch  id="inputSearch" class="items-center w-full px-10 py-5  mr-8 mb-4 space-x-4 text-blue-900 bg-blue divide-x divide-blue-200 rounded-lg shadow top-5 left-5 dark:text-blue-400 dark:divide-blue-700 space-x dark:bg-blue-800" (input)="onSearchHeroes(inputSearch.value)">
+    <i class="fas fa-search text-2xl absolute top-3 left-3 text-blue-500"></i>
+  </div>
 
-    <input #inputSearch  id="inputSearch" class="items-center w-full px-10 py-5  mr-8 mb-4 space-x-4 text-purple-500 bg-purple divide-x divide-purple-200 rounded-lg shadow top-5 left-5 dark:text-purple-400 dark:divide-purple-700 space-x dark:bg-purple-800" (input)="onSearchHeroes(inputSearch.value)">
-    <ul class="search-result" *ngFor="let hero of heroes$ | async">
-        <a routerLink="/detalle/{{hero.id}}">
-          {{hero.name}}
-      </a>
+  <div class="relative z-50">
+    <ul class="search-result text-black" *ngFor="let hero of heroes$ | async">
+        {{hero.name}}
     </ul>
+  </div>
+
 </div>

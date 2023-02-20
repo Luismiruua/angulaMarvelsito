@@ -12,8 +12,6 @@ const routes: Routes = [
   { path: 'detalle/:id', component: HeroCaracteristicasComponent },
   { path: 'heroes', component: HeroesComponent },
 
-
-
 ];
 
 @NgModule({

@@ -1,29 +1,24 @@
 
 <div *ngIf="hero">
-
-
-  <div class="">
-
-    <img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}">
-
-    <div class="">
-      <div class="mb-8 ">
-        <div class="text-red-900 font-bold mb-2">
-          <h2 class=""> {{hero.name | uppercase}} :</h2>
-        </div>
-          <div>
-            {{hero.id}}
-            <p class="text-red-700 text-base"> {{hero.description}}</p>
-
+  <div class="bg-red-200 shadow-md rounded-lg overflow-hidden">
+    <div class="flex justify-center items-center bg-red-200 rounded-t-lg overflow-hidden">
+      <div class="flex flex-col items-center p-4">
+        <div class="mb-4">
+          <div class="bg-red-200 w-96 h-96 flex items-center justify-center rounded-lg overflow-hidden hover:animate-pulse">
+            <img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}" class="h-full w-full" alt="Hero image">
           </div>
+        </div>
+
+        <div class="text-center">
+          <h2 class="text-2xl font-bold text-blue-800">{{hero.name | uppercase}} :</h2>
+          <div class="font-bold mb-2 text-blue-600">{{hero.id}}</div>
+          <div class="text-sm text-blue-500">{{hero.description}}</div>
+        </div>
+
+        <button type="button" (click)="goBack()" class="text-white bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-base px-10 py-5 text-center mt-8 mb-8">
+          ATRÁS
+        </button>
       </div>
-      <button type="button" (click)="goBack()">ATRÁS</button>
-
     </div>
-
-  <div>
-
-
-
-
+  </div>
 </div>
