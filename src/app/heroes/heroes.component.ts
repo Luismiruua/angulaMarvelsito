@@ -17,7 +17,6 @@ export class HeroesComponent implements OnInit{
   public offset: number = 0;
   public p: number = 0;
   public u:number = 1560;
-
   constructor(private heroService: HeroService){}
 
   ngOnInit(): void {
@@ -25,9 +24,7 @@ export class HeroesComponent implements OnInit{
   }
 
 
-
   getHeroesp(): void {
-
     this.heroService.getAll(this.limit, this.offset)
     .subscribe(heroes => {
       this.total = this.heroService.getTodosLosHeroes()

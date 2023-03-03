@@ -1,34 +1,44 @@
-<div class="flex justify-center bg-red-300 font-custom">
-  <div class="w-full max-w-lg">
+<div class="flex bg-red-300 font-custom justify-items-center">
+  <div class="w-full h-full flex flex-col justify-center items-center align-middle">
     <h2 class="text-center font-bold mb-4">Todos Los Heroes del mundo</h2>
 
-    <div class="bg-red-300 rounded-lg shadow-md">
-      <ul class="divide-y divide-blue-500">
-        <li *ngFor="let hero of heroes">
-          <a routerLink="/detalle/{{hero.id}}" class="block hover:bg-blue-300 hover:text-xl py-3 px-4">
-            <div class="flex items-center">
-              <span class="font-bold mr-2 text-red-800">{{hero.id}}</span>
-              <div class=" text-red-800">{{hero.name}}</div>
-            </div>
-          </a>
-        </li>
-      </ul>
+    <div class="h-full w-full flex justify-center flex-col items-center align-middle">
+      <div class="gap-4 w-full columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+        <div *ngFor="let hero of heroes" class="bg-red-300 shadow-lg rounded-lg overflow-hidden w-96 h-36"
+          style="display: inline-flex;">
+          <div class="">
+            <img src="{{hero.thumbnail.path}}.{{hero.thumbnail.extension}}" alt="{{hero.name}}" class="w-36 h-36">
+          </div>
+          <div class="p-4">
+            <a href="/detalle/{{hero.id}}" class="text-center block">
+              <h2 class="text-lg font-medium text-gray-900">{{hero.id}}</h2>
+              <div>
+                <h2 class="text-lg font-medium text-gray-900">{{hero.name}}</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="flex justify-center mt-4">
-      <button [disabled]="offset === 0" class="px-4 py-2 mr-2 text-sm font-medium text-white bg-blue-700 rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
-        (click)="primeraPag()">
+      <button [disabled]="offset === 0"
+        class="px-6 py-3 mr-2 text-base font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 ease-in-out dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transform hover:scale-105 dark:hover:text-gray-900 dark:hover:scale-110"
+        (click)="primeraPag">
         &lt;&lt;&lt;
       </button>
-      <button [disabled]="offset === 0" class="px-4 py-2 mr-2 text-sm font-medium text-white bg-blue-700 rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+      <button [disabled]="offset === 0"
+        class="px-6 py-3 mr-2 text-base font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 ease-in-out dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transform hover:scale-105 dark:hover:text-gray-900 dark:hover:scale-110"
         (click)="prevPagina()">
         Anterior
       </button>
-      <button [disabled]="offset >= total - 2" class="px-4 py-2 mr-2 text-sm font-medium text-white bg-blue-700 rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+      <button [disabled]="offset >= total - 2"
+        class="px-6 py-3 mr-2 text-base font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 ease-in-out dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transform hover:scale-105 dark:hover:text-gray-900 dark:hover:scale-110"
         (click)="siguientePagina()">
         Siguiente
       </button>
-      <button [disabled]="offset >= total - 20" class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+      <button [disabled]="offset >= total - 20"
+        class="px-6 py-3 mr-2 text-base font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 ease-in-out dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 transform hover:scale-105 dark:hover:text-gray-900 dark:hover:scale-110"
         (click)="ultimaPag()">
         >>>
       </button>
